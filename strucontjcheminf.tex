@@ -233,18 +233,19 @@ Systems which perform intelligent reasoning tasks need to rely on a diverse set 
 
 Recent years have seen an explosion in the availability of data throughout the natural sciences. Primary data facilitates research through complex data-mining and knowledge discovery methods. However, with this information explosion, retrieving \textit{relevant} information from the deluge has become much more difficult. Computational processing is essential to filter, retrieve and organise such data. These goals are facilitated by \textit{formal ontologies}: computable encodings of human domain knowledge. These ontologies are used in several different ways \cite{lambrix2004}: to provide standardisation of terminology and identification across all entities in a domain so that multiple sources of data can be aggregated through comparable reference terms, to provide hierarchical organisation so that such aggregation can be performed at different levels and data can be browsed in an easily accessible fashion, and to allow for logic-based intelligent applications to be built which are able to perform complex reasoning tasks such as checking for errors and inconsistencies and deriving logical inferences. Logic-based knowledge representation (of which ontology is a particular kind) can be contrasted with algorithmic ``knowledge" representation, in which software algorithms procedurally define outputs based on stated inputs, and with statistical ``knowledge" representation, in which complex statistical models are trained to produce outputs based on a given set of inputs by learning weights for a complex set of internal parameters.  The advantages of logic-based knowledge representation is that it allows the knowledge to be expressed \textit{as knowledge}, i.e. as statements which are easily comprehensible, true and self-contained.  Statistical methods operate as black boxes and procedural methods require a programmer in order to manipulate or extend. 
 
-One example of a successful ontology in the biomedical domain is the Gene Ontology \cite{go2000}, which is used \textit{inter alia} for the statistical analysis of large-scale genetic data to identify genes which are significantly enriched for specific functions.  For the domain of biologically interesting chemistry, the Chemical Entities of Biological Interest ontology (ChEBI) \cite{chebi2010} provides a classification of chemical entities such as atoms, molecules and ions.  ChEBI organises chemical entities according to shared structural features, for example, carboxylic acids are all molecular entities that possess the characteristic carboxy group, and according to their activities in biological and chemical contexts, for example, acting as an antiviral agent. ChEBI is widely used as a database of chemical entities which can be queried both by structural classes and by functional annotations in the role ontology. The ontology has been applied in diverse applications such as annotation of chemicals in biological databases for pathways, interactions, and systems biology models \cite{matthews2009,libiomodels2010,kerrien2007}; chemical text mining \cite{corbett2006}; formalising the chemistry underlying biological ontologies \cite{mungall2010}; semantic similarity \cite{couto2011}; and metabolome prediction \cite{swainston2010}. Like the GO, ChEBI is manually maintained by a team of expert curators.  Historically, bio-ontologies such as GO and ChEBI have been developed as Directed Acyclic Graphs (DAGs), a deliberately simplified ontology format which allowed domain experts (non-logicians) to directly participate in ontology engineering. However, with the increasing availability of supporting tools and widespread adoption, there is a growing trend of evolution  towards the Web standard ontology language OWL \cite{owlformat}, which provides a sophisticated suite of logic-based constructs to support eloquent knowledge representation and automated reasoning in real-world domains \cite{alterovitz2010}. 
+One example of a successful ontology in the biomedical domain is the Gene Ontology \cite{go2000}, which is used \textit{inter alia} for the statistical analysis of large-scale genetic data to identify genes which are significantly enriched for specific functions.  For the domain of biologically interesting chemistry, the Chemical Entities of Biological Interest ontology (ChEBI) \cite{chebi2010} provides a classification of chemical entities such as atoms, molecules and ions.  ChEBI organises chemical entities according to shared structural features, for example, carboxylic acids are all molecular entities that possess the characteristic carboxy group, and according to their activities in biological and chemical contexts, for example, acting as an antiviral agent. ChEBI is widely used as a database of chemical entities which can be queried both by structural classes and by functional annotations in the role ontology. The ontology has been applied in diverse applications such as annotation of chemicals in biological databases for pathways, interactions, and systems biology models \cite{matthews2009,libiomodels2010,kerrien2007}; chemical text mining \cite{corbett2006}; formalising the chemistry underlying biological ontologies \cite{mungall2010}; semantic similarity \cite{couto2010}; and metabolome prediction \cite{swainston2010}. Like the GO, ChEBI is manually maintained by a team of expert curators.  Historically, bio-ontologies such as GO and ChEBI have been developed as Directed Acyclic Graphs (DAGs), a deliberately simplified ontology format which allowed domain experts (non-logicians) to directly participate in ontology engineering. However, with the increasing availability of supporting tools and widespread adoption, there is a growing trend of evolution  towards the Web standard ontology language OWL \cite{owlformat}, which provides a sophisticated suite of logic-based constructs to support eloquent knowledge representation and automated reasoning in real-world domains \cite{alterovitz2010}. 
 
 Structure-based classification in chemistry exploits elegant regularities and symmetries in the underlying chemical domain.  Some of these regularities lead easily to algorithmic or statistical automated approaches to classification, and as a result, algorithmic approaches to hierarchical organisation of large-scale compound collections is a mature research area in chemoinformatics \cite{barnard1992,deshpande2005}. However, there are nevertheless several key benefits to adoption of the ontology-based approach in the chemistry domain, namely:
 \begin{itemize}
-	\item Classification knowledge represented in an ontology is \textit{explicit}, while algorithms which perform hierarchical classification often act as \textit{black boxes}, and to change the classification requires changes to the underlying software;
+	\item Classification knowledge represented in an ontology is \textit{explicit}, while algorithms which perform hierarchical classification often act as \textit{black boxes}, and to change the classification requires changes to the underlying software or re-training a complex statistical model;
+	\item Using an ontology for classification allows for \textit{explanations} (justifications) \cite{horridgeentail09}, both for computed classifications and for computed inconsistencies. This can be contrasted to black-box approaches such as neural networks which cannot offer any explanations. 
 	\item Representation of chemical knowledge in an ontology allows it to be harnessed in a generic fashion from within diverse knowledge-based applications which also utilize knowledge from \textit{other domains} (a core requirement for whole-scale systems biology), while to make use of chemoinformatics algorithms and toolkits requires custom software, differing from the software used in other domains; and
-	\item There are several types of chemical class which are not adequately represented in algorithmic approaches, which can be formalised in 
+	\item There are several types of chemical class definition which are not adequately represented in algorithmic approaches, which can be formalised in logical expressions (although not always in straightforward OWL). 
 \end{itemize}
 
 Conversely, there are several benefits to adopting chemoinformatics tools within the ontology engineering process in the domain of chemistry, such as to benefit from the well-developed and rapid algorithms for detecting parthood between chemicals and computing properties.  In this paper, we present an analysis of the types of structure-based classes used in chemistry, and then discuss these as compared to available chemoinformatics algorithms for computing hierarchical ordering on sets of compounds and to the available constructions for encoding class definitions in chemical ontologies based on OWL.  We then explore aspects of chemoinformatics tools which we believe can enhance chemical ontology and explore problem areas in common to both fields which we believe can provide a stimulus for future research bridging the domains of chemoinformatics and computational logic. 
 
-The remainder of this paper is organised as follows. The remainder of this Background presents some relevant chemoinformatics and ontology concepts.  Following that, we firstly present the types of classes used in chemical classification and thereafter discuss these types of classes in the context of chemoinformatics hierarchy construction methods in chemoinformatics and in the context of what can be stated and reasoned over in chemical ontologies. In our Discussion, we discuss the relationship between chemoinformatics and logical approaches and some applications of chemical ontology.  We conclude with our outlook and open research areas. 
+The remainder of this paper is organised as follows. The remainder of this Background presents some relevant chemistry and ontology concepts.  Following that, in our Results we firstly present the types of classes used in chemical classification and thereafter compare these types of classes to the capabilities of chemoinformatics hierarchy construction methods in chemoinformatics and that of chemical ontologies. In our Discussion, we discuss the relationship between chemoinformatics and logical approaches and some applications of chemical ontology.  We conclude with our outlook and open research areas. 
 
 
 
@@ -253,29 +254,25 @@ The remainder of this paper is organised as follows. The remainder of this Backg
 
 The ability to \textit{classify} raw information into meaningful groups is an essential component of human intelligence, which thus far has proven difficult to replicate in machine reasoning.  In particular, classification has a long tradition in chemistry:  the periodic table of the elements is one of the longest-standing and most used systems of classification throughout the natural sciences.  
 
-The importance of classification systems are severalfold. 
+The benefits of classification systems are severalfold. Classification \textit{organises} large volumes of information into sensible groupings so that they are more accessible to humans. Such hierarchical organisations can be more easily browsed; research in cognitive science shows that humans can only browse and compare a relatively low number of concepts at the same level at the same time, thus grouping into hierarchies reduces the amount of detail that has to be dealt with at each level \cite{sternberg2003}. A hierarchical structure allows narrowing in on the area of interest within a large domain, and only exploring the details of that narrowed in area, rather than observing the full domain at such a detailed level. 
 
-Classification \textit{organises} large volumes of information into sensible groupings so that they are more accessible to humans. Such hierarchical organisations can be more easily browsed; research in cognitive science shows that humans can only browse and compare a relatively low number of concepts at the same level at the same time, thus grouping into hierarchies reduces the amount of detail that has to be dealt with at each level \cite{sternberg2003}. A hierarchical structure allows narrowing in on the area of interest within a large domain, and only exploring the details of that narrowed in area, rather than observing the full domain at such a detailed level.
- 
-A second benefit of a hierarchical organisation is that it allows for the compact representation of generalised knowledge at the highest level to which it applies.  For example, statements which are true for all mammals need to be expressed at the level of mammals as a whole, and not repeated for every specific mammal that occurs downstream.  Similarly, features which apply to all carboxylic acids can be expressed at the level of carboxylic acids as a whole. 
+A second benefit of a hierarchical organisation is that it allows for the compact representation of generalised knowledge at the highest level to which it applies.  For example, statements which are true for all mammals need to be expressed at the level of mammals as a whole, and not repeated for every specific mammal that occurs downstream.  Similarly, features which apply to all carboxylic acids can be expressed at the level of carboxylic acids as a whole, rather than repeated at the level of the different molecules as is required in databases or other flat structures which allow no general grouping or hierarchical organisation. 
 
-Hierarchical organisation of knowledge in a domain allows for data-driven discovery, enabling useful predictions to be made.  For example, in functional genomics, the analysis of large-scale genetic data is facilitated by the grouping together of different genes which perform the same function, and modular analysis of such datasets reveals organisation at an aggregate level which is not apparent at the level of the details. Hierarchical organisation of knowledge also allows useful predictions to be made, since it allows generalisation of knowledge to the highest possible level of applicability, and consequent prediction of properties of novel discovered members of the class.  Chemical classes, the objects found within a chemical classification system, group together chemical entities in such a way as to allow meaningful scientifically relevant groups to be created and described. Ideally, all members of a chemical class should share important dispositional properties such as chemical reactivity. In fact, almost the only method of classification which was available to historical chemists, before compound structures were well understood, was based on the observation of reactivity through means of performing controlled reactions between different substances, or based on the origin of the molecule where the molecule was isolated from a natural product substance. Much of these historical forms of classification are still inherited today and are taught in chemistry classes and reproduced in textbooks. Knowledge about the structural features which form the underlying \textit{causes} of the shared dispositional properties (where such existed), and the structural features shared between similar natural product substances, was only developed later. However, now that chemical structures are well described (within the limits of the chemical graph formalism), many more structural features are able to be used for chemical class definitions. 
+Hierarchical organisation of knowledge in a domain allows for data-driven discovery, enabling useful predictions to be made.  For example, in functional genomics, the analysis of large-scale genetic data is facilitated by the grouping together of different genes which perform the same function, and modular analysis of such datasets reveals organisation at an aggregate level which is sometimes not apparent at the level of the raw data due to overloading of detail and noise in the underlying signal. Hierarchical organisation of knowledge also allows useful predictions to be made, since it allows generalisation of knowledge to the highest possible level of applicability, and consequent prediction of properties of novel discovered members of the class.  
 
-As previously mentioned, interesting classes in chemistry can be grouped into those which are \textit{structure-based} and those which are not. Structure-based classes are defined based on the presence of some shared structural feature across all members of the class.  This feature, however, may be crisply defined or vaguely defined.  
+Chemical classes, the objects found within a chemical classification system, group together chemical entities in meaningful, scientifically relevant hierarchy. Ideally, all members of a chemical class should share important dispositional properties such as chemical reactivity. In fact, almost the only methods of classification available to historical chemists, before compound structures were well understood, were (i) based on the observation of reactivity through means of performing controlled reactions between different substances; or (ii) based on the origin of the molecule, when the molecule was isolated from a natural product substance. Much of these historical forms of classification are still inherited today and are taught in chemistry classes and reproduced in textbooks. Knowledge about the structural features which form the underlying causes of the shared dispositional properties (where such existed), and the structural features shared between similar natural product substances, was only developed later. However, now that chemical structures are well described (within the limits of the chemical graph formalism), many more structural features are able to be used for chemical class definitions. 
 
-Vaguely defined structural classes:  steroids, other family-resemblance classes (structural similarity?)
-Crisply defined structural classes:  carboxylic acids and the others... discussed further in section xxx below. 
+Interesting classes in chemistry can be grouped into those which are structure-based and those which are not. Structure-based classes are defined based on the presence of some shared structural feature across all members of the class.  This feature, however, may be crisply defined or vaguely defined.  Crisply defined structural classes will form the bulk of our focus in this paper, and are discussed further in the section \textit{\nameref{sec:resultsclasses}} below.   
 
-Other types of classes used in chemistry:  %(Marcus to help out here?)
-Classes defined based on where the chemical came from:  natural product classes / metabolic products.  Also contrast the two different types of polymer naming conventions. 
-Classes defined based on what the chemical does in a biological or chemical context: e.g. antibiotic, acid, solvent, such-and-such a drug, blah \cite{batchelor2011}. %Re: certain types of uncertainty in class definitions in terms of contextual information, perhaps can cite Bio-ontologies and OWLED papers, in the Discussion where the need for hybrid systems for knowledge representation are discussed. 
-% Can also cite collections based on 
+Vaguely defined structural classes are those that are based on a family resemblance between a group of molecules, which are often of natural origin or have biological relevance.  For example, \textit{steroids} are defined as ``Any of naturally occurring compounds and synthetic analogues, based on the \textit{cyclopenta[a]phenanthrene carbon skeleton}, partially or completely hydrogenated; there are usually \textit{methyl groups} at C-10 and C-13, and often an \textit{alkyl group} at C-17. By extension, one or more bond scissions, ring expansions and/or ring contractions of the skeleton may have occurred."  The vagueness is indicated by terms and phrases such as `usually'; `one or more\ldots may have'.
 
-Hybrid classes:  tricyclic antidepressant; tetracyclic antibiotic and so on...
+Chemical classes can also be defined based on where the chemical came from in synthetic or natural pathways. Chemicals of natural metabolic origin are called natural products.  For example, alkaloids are defined as ``Any of basic nitrogen compounds (mostly heterocyclic) occurring mostly in the plant kingdom (but not excluding those of animal origin). Amino acids, peptides, proteins, nucleotides, nucleic acids, amino sugars and antibiotics are not normally regarded as alkaloids. By extension, certain neutral compounds biogenetically related to basic alkaloids are included."
 
-The relationship between structure and function (SARs; but also cliffs in structure-activity space)
+Many interesting classes of chemicals are defined based on what the chemical does (its function or activity) in a biological or chemical context. Included in this group are drug usage classes such as antidepressant and antifungal; chemical reactivity classes such as solvent, acid and base; and biological activities such as hormone \cite{batchelor2010}. 
 
-The focus in the remainder of this document will be on crisply defined structure-based classes in chemistry, which will be discussed further in the section \textit{\nameref{sec:resultsclasses}} below. %below
+%Re: certain types of uncertainty in class definitions in terms of contextual information, perhaps can cite Bio-ontologies and OWLED papers, in the Discussion where the need for hybrid systems for knowledge representation are discussed. 
+
+Hybrid classes:  tricyclic antidepressant; tetracyclic antibiotic and so on \ldots  Other types of non-structural or vague classes? 
 
 
 % This is a background section. 
@@ -312,89 +309,85 @@ Why cycles are a problem \ldots
 
 \section*{Results}
 
-\subsection*{Types of structure-based chemical classes}
+\subsection*{Types of structurally defined chemical classes}
 \label{sec:resultsclasses}
 
-The chemical graph formalism \cite{trinajstic1992} allows the description of fully defined chemical classes at a certain level of granularity, for example, the class of all paracetamol molecules.  Paracetamol molecules all have in common the connectivity as described in the graph describing the class, but individual molecules vary in conformation and configuration depending on their environmental context. The chemical graph formalism, however, only applies to fully defined chemical structures, and there are limited extensions to support higher-level modelling (such as R groups). 
+The chemical graph formalism \cite{trinajstic1992}allows the description of fully defined chemical classes at a certain level of granularity, for example, the class of all paracetamol molecules.  Paracetamol molecules all have in common the connectivity as described in the graph describing the class, but individual molecules vary in conformation and configuration depending on their environmental context. The chemical graph formalism, however, only applies to fully defined chemical structures, and there are limited extensions to support higher-level modelling (such as R groups). 
 
 There are many different types of classes that are used in chemistry, for various reasons of historical development and usefulness. New classes are both created and discovered, as research in natural chemistry and biochemistry reveals new information, so too synthetic chemists are able to create ever more complex and creative structures.
 
 Some of the elements which are used in chemical class definition include: 
 \begin{enumerate}
-	\item Atomic composition
-	\item Basic chemical properties, such as charge
-	\item Cycles and ring system arrangements
-	\item Interesting parts
-	\item Structural formulae
+	\item	Interesting parts
+	\item	Basic chemical properties, such as charge
+	\item	Atomic composition
+	\item	Cycles and ring system arrangements
+	\item	Properties based on entire molecular structures
+	\item	Structural formulae
 \end{enumerate}
 
 Most of these elements can be used singly or in combination with other elements.  Further explanations as well as examples follow in the sections below. 
 
-\subsubsection*{Atomic composition}
 
-Classes may be defined based on the presence of certain types of atoms, organised according to the layout of the periodic table.  Figure~\ref{fig:periodic-table} shows the ChEBI interface for browsing molecular entities based on the presence of certain types of atom.  Examples are `carbon molecular entities' and `lanthanoid molecular entities'. Classes qualify as subclasses of carbon molecular entities if they contain any atom of carbon, regardless of what other atoms they contain in addition.  Classes qualify as subclasses of lanthanoid molecular entities if they contain any of the lanthanoid group atoms.  As most complex molecular entities belong to several such classes, automation of this aspect of classification is obviously highly desirable. 
+\subsubsection*{Interesting parts}
 
-% Figure periodic table should contain the periodic table interface, an arrow from the header 'Lanthanoids', and then a screenshot of the search for is-a children with structures. 
+Perhaps the most prominent of methods for classifying chemical entities based on features of their structures is based on the presence or absence of specific parts.  Such parts may be the overall `skeleton' of the structure or they may be minor constituents. The skeleton is usually loosely defined as the major or most relevant part of the molecule, the `backbone' to which other groups are attached as decorations. 
 
-Another form of definition by atomic composition is the definition of classes of molecular entity based on specifying the \textit{exclusive} atomic composition; this type of classification is dealt with below in the section \textit{\nameref{sec:molformula}}.
+For example, metalloporphyrins is defined as any compound containing a porphyrin skeleton and a metal atom.  Note that as the term is commonly used in chemistry, a skeleton is not always a straightforward substructure, since bond order (single or double) may vary, and bonds may even be added or removed while retaining the same skeleton. For example, \ldots
+ 
+Allowing variance in bond order, or the addition or removal of parts of the skeleton, gives rise to a vague class definition. Here, therefore, we focus on the stronger sense of skeleton that implies that the skeleton as specified must be a substructure of the molecule it is a skeleton of. Classes defined with skeletons in this fashion are often named for the skeleton.  However, the same name is often used to mean a class of compounds with a certain skeleton and the larger class of compounds containing a part which has that skeleton (X and X derivatives). 
+
+Parts may also be straightforward constituents in which there is no implication that the part is somehow maximal, as there is in the case of skeletons.  General parts are termed `groups' (which may be simple atoms). The number (count, cardinality) of such groups is also important.  For example, tricarboxylic acids can be defined as a compound containing exactly three carboxy groups. 
+
+The class definition may also specify the position at which a group (or set of groups) is attached to a skeleton. Such positions are assigned by rules for numbering the skeleton of a molecule in a reproducible (and community-agreed-upon) fashion.  For example, \ldots
+
+Some particularly problematic classes refer to the relative arrangement of parts / attachments within the whole molecule. A special case is the relative configuration of stereocentres. Chemical graphs can be specified for completely stereochemically specified entities, and for completely stereochemically unspecified entities, but relative configurations of stereogenic centers cannot be specified using traditional chemical graph representation formalisms. For example, `allothreonine' [rel-(2R,3R)-2-amino-3-hydroxybutanoic acid] and `threonine' [rel-(2R,3S)-2-amino-3-hydroxybutanoic acid] are compounds with a relative configuration of stereogenic centres, thus for which a graph cannot currently be drawn. What cannot be represented in the graph formalism is a relative arrangement of these - if one is up, the other is down - or if one is down, the other is down - for example. 
 
 
-\subsubsection*{Chemical properties}
+\subsubsection*{Basic chemical properties such as charge}
 
 Straightforward chemical properties such as charge and unpaired electrons are used to define broad classes of molecules such as ion and radical. Aromaticity and saturation are other properties commonly found in class definitions. These also apply at a lower level of classification, such as `aromatic diazonium ion'.  
 
 
-\subsubsection*{Cycles and ring arrangements}
+\subsubsection*{Atomic composition}
+
+Classes may be defined based on the presence of certain types of atoms, organised according to the layout of the periodic table.  Examples are `carbon molecular entities' and `lanthanoid molecular entities'. Classes qualify as subclasses of carbon molecular entities if they contain any atom of carbon, regardless of what other atoms they contain in addition.  Classes qualify as subclasses of lanthanoid molecular entities if they contain any of the lanthanoid group atoms.  As most complex molecular entities belong to several such classes, automation of this aspect of classification is obviously highly desirable. 
+
+
+\subsubsection*{Cycles and ring system arrangements}
 
 Another element commonly used in class definitions is the number and arrangement of rings (cycles) in a ring system which is a part of the molecule. For example, the classes `ring assembly' and `polycyclic cage' both refer, in their definitions, to numbers and arrangements of rings in the molecule. Polycyclic cages are molecules which are composed entirely of cycles which are fused together in such a way as to form an overall cage-like structure.  Examples are the fullerenes, nanotubes, and small regular compounds such as cubane. 
 
-Number and counts of rings
-
-% Maybe a figure for polycyclic cages
+Number and counts of rings: tetracyclic; pentacyclic; \ldots
 
 ortho- and peri-fused compound: A polycyclic compound in which one ring contains two, and only two, atoms in common with each of two or more rings of a contiguous series of rings. Such compounds have n common faces and less than 2n common atoms.
 
 ortho-fused compound: A polycyclic compound in which two rings have two, and only two, atoms in common. Such compounds have n common faces and 2n common atoms.
 
-
 Related to the chemical properties from the previous section, the `cyclic' modifier is often treated as an overall property of the molecule and as a modifier for other class types. Consider: `cyclic ketone', `cyclic peptide', `cyclic ether', `cyclic tetrapyrrole', \ldots
 
 
-\subsubsection*{Interesting parts}
+\subsubsection*{Properties of entire molecular structures}
 
-Arguably the most prolific of methods for classifying chemical entities based on features of their structures is based on the presence or absence of specific parts.  Such parts may be the overall `skeleton' of the structure or they may be minor constituents. The skeleton is usually loosely defined as the major or most relevant part of the molecule, the `backbone' to which other groups are attached as decorations. 
-
-For example, the class `metalloporphyrins' (see Figure~\ref{fig:Figuremetalpor}) is defined as any compound containing a porphyrin skeleton and a metal atom. 
-
-Note that as the term is commonly used in chemistry, a skeleton is not always a straightforward substructure, since bond order (single or double) may vary, and bonds may even be added or removed while retaining the same skeleton. For example, \ldots
-
-However, for our present purposes it will be sufficient to restrict the definition of skeleton to the stronger one which implies that the skeleton must be a substructure of the molecule it is a skeleton of.
-
-%Ambiguity between classes with ``strict" definitions and the same name for classes representing X and all of its derivatives
-
-
-% Maybe a figure
-
-
-Parts may also be straightforward constituents in which there is no implication that the part is somehow maximal, as there is in the case of skeletons.  General parts are termed `groups' (which may be simple atoms). The number (count, cardinality) of such groups is also important.  For example, `tricarboxylic acid' can be defined as a compound containing exactly three carboxy groups. 
-
-% Maybe a figure
-
-The class definition may also specify the position at which a group (or set of groups) is attached to a skeleton. 
-
-Some particularly problematic classes refer to the relative arrangement of parts / attachments within the whole molecule. 
-
-A special case is the relative configuration of stereocentres. Chemical graphs can be specified for completely stereochemically specified entities, and for completely stereochemically unspecified entities, but relative configurations of stereogenic centers cannot be specified using traditional chemical graph representation formalisms. For example, `allothreonine' [rel-(2R,3R)-2-amino-3-hydroxybutanoic acid] and `threonine' [rel-(2R,3S)-2-amino-3-hydroxybutanoic acid] are compounds with a relative configuration of stereogenic centres, thus for which a graph cannot currently be drawn. Figure~\ref{fig:Figure12} illustrates completely stereochemically specified forms of threonine. What cannot be represented in the current graph formalism is a relative arrangement of these - if one is up, the other is down - or if one is down, the other is down - for example. 
-
-% Maybe a figure
+Chemicals defined based on shapes: Molecular M\"{o}bius strips and knots such as catenanes, rotaxanes and trefoil knots. 
 
 
 
 \subsubsection*{Structural formulae}
 \label{sec:molformula}
 
-Finally, an interesting, yet problematic to depict with existing graph-based tools, element of chemical class definitions, is that based on structural formula. For example, `alkane' is defined as ``an acyclic branched or unbranched hydrocarbon having the general formula $C_{n}H_{2n+2}$.'' 
+Another form of definition by atomic composition is the definition of classes of molecular entity based on specifying the \textit{exclusive} atomic composition.  This can be contrasted to parthood (where other attachments are allowed). 
 
+Finally, an interesting, yet problematic to depict with existing graph-based tools, element of chemical class definitions, is that based on structural formula. 
+
+For example, `alkane' is defined as ``an acyclic branched or unbranched hydrocarbon having the general formula $C_{n}H_{2n+2}$.'' 
+
+Also, polymers (strings of repeating units).
+
+
+\subsubsection*{Hybrid classes}
+
+Given all of the above different types of elements of chemical class definitions, perhaps the most interesting classes arise in combinations of the various different elements, including combinations of structure-based class elements and non-structure-based groupings:  tricyclic antidepressant; tetracyclic antibiotic and so on...
 
 
 
@@ -482,10 +475,16 @@ This should also allow expressions in terms of absences of atoms of certain type
 
 %  Human knowledge and black box classification.
 In contrast to the above methods of automatic hierarchy construction, chemical ontology consists in the specification of a hierarchy ``from the top down'', in the sense that the features of chemical classes are specified, and their members are assigned based on these features.  Chemical classes and the relationships between them may be specified to a greater or lesser level of detail, not restricted by what the algorithms for detecting similarity or substructures are able to detect. Creating such a hierarchy allows for the explicit representation of knowledge in the domain, knowledge which corresponds to the content of textbook chemistry and which can then be directly correlated with research reports in the literature as well as large-scale databases of chemical compounds. % Cite Expert-Systems? Dendral?
-The explicit representation of knowledge in this fashion allows for the classification of edge cases (unusual classes) and cases which cannot be treated within the constraints of the available algorithmic tools. For example, xxx and yyy. 
+
+The explicit representation of knowledge in this fashion allows for the classification of edge cases (unusual classes) and cases which cannot be treated within the constraints of the available algorithmic tools. Statistical (machine-learning) approaches rely on the underlying quantification of features in the molecules -- and features which are not common are less likely (vanishingly unlikely?) to be represented in resulting trained models. Similarity comparison (used in pairwise similarity-based hierarchy construction) are also vulnerable to the specification of features to be used in the quantification of similarity. Also, many of the features used are path-based, that is, they traverse combinatorially exhaustive paths through the molecule \textit{up to a certain length}.  It is difficult to capture overall features of the molecule with path-based approaches.  However, some overall features of molecules, such as count of rings, are often added in to the features used in such classifications. Substructure detection is similarly unable to account for overall features of molecules. 
+
+Examples of edge classes which appear difficult to deal with in the chemoinformatics approaches are thus:
+\begin{enumerate}
+	\item cyclic peptide (because the cycle in question is not an arbitrary attached ring, but a cycle of chained peptide links)
+\end{enumerate}
 
 
-% Importance of logic-based, specified classification. Machine classification just can't catch the edge cases.  Of course, machine classification is good where the features are small and they can be learned from a large collection of instances.  But manual classification gives a flexibility in defining features, even very large ones, or ones that span over a small number of examples but are nevertheless important. The most important thing is that the eventual classification (howsoever arrived at) is CORRECT, so that it does not lead to incorrect inferences and can be used to support science. 
+Machine classification works best where the features are small and they can be learned from a large collection of instances.  Ontology-based classification using logical definitions gives a flexibility in defining features, even very large ones, or ones that span over a small number of examples but are nevertheless important.  The most important thing is that the eventual classification (howsoever arrived at) is PROVABLY CORRECT, so that it does not lead to incorrect inferences and can be used to support science in novel ways (more about that in the concluding remarks on applications)
 
 
 Reasons that ontology and machine classification as currently used in chemoinformatics are distinct, mutually non-reducible exercises:  
@@ -533,19 +532,19 @@ exciting applications of the future too: nanotechnology and biotechnology
 
 \section*{Methods}
 
-\subsection*{Manipulating chemical structures}
-
--- ChEBI database
--- CDK
--- JChemPaint
-
-\subsection*{Programmatic ontology creation}
+\subsection*{Representing the ChEBI ontology in OWL}
 
 -- OWL API
 -- ChEBI ontology data model and the ChEBI maintenance suite, in particular the tooling for chemical structures
 -- Conversion of relationships into all-some restrictions
 -- InChI as annotations
+
+\subsection*{Representing chemicals as description graphs}
+-- Model for molecules (MOLfile to DG)
+-- Software involved
 -- How we create description graphs
+-- Model for DGs at the class level (not the fully specified;)
+-- Relationship to SMARTS, R-Groups
 
 \bigskip
 
