@@ -128,8 +128,6 @@
 %%                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: come up with a better title, or at least a subtitle?
-
 \title{Structure-based classification and ontology in chemistry}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -281,22 +279,6 @@ Many interesting classes of chemicals are defined based on what the chemical doe
 
 Hybrid classes:  tricyclic antidepressant; tetracyclic antibiotic and so on \ldots  Other types of non-structural or vague classes? 
 
-% Review on algorithm based chemical classification. Need to be relocated
-
-Since computers are introduced to chemistry research, chemical structures are formalized as graphs in computer systems, and most classification algorithms can not deal with such graphical data. In order to apply classification algorithms, molecular descriptors are calculated. As defined by Todeschini and Consonni\cite{Todeschini2000}, the molecular descriptor is the final result of a logic and mathematical procedure which transforms chemical information encoded within a symbolic representation of a molecule into a useful number or the result of some standardized experiment. Among calculated descriptors, if we focus on structural features, molecular fingerprint is a special form of descriptors which is defined as a string of boolean values in which each bit represent a feature. In the most common types of fingerprint, a feature could be either a pre-defined substructure or a random substructure mapped by hashing algorithms.
-
-Structure-activity relation (SAR) study is one of the hottest fields where classification algorithms are applied. Supervised machine learning methods, such as Bayesian classifier, decision trees and support vector machine,  are employed to classify compounds into positive or negative classes. The classification problem we are discussing here is to organize chemical structures in an understandable way. As mentioned above, hierarchical organization is crucial for easier human understanding. But none of the supervised methods mentioned above has the ability to extract such a hierarchical structure. Supervised machine learning requires a reasonable training set of chemicals which are already classified. Although existing databases like ChEBI and MeSH\footnote{Would be nice to have a url of MeSH here.} could act as training sets, the size of such data is still a tiny fraction of the enormous chemical space. What makes the problem even more challenging is that the leaf nodes of such classification trees normally contain few structures. 
-
-Other statistical methods like hierarchical clustering\cite{Adamson1981} do give a hierarchy. In general, hierarchical clustering relies on a similarity distance matrix, composed by pair-wise distance. Either agglomerative or divisive methods could be used. In an agglomerative clustering, all instances are initially assigned to its own class. Then a recursive merge is performed. In each step, two nearest classes are chosen to be merged, until all classes are merged into one. Divisive clustering is performed in an opposite manner, in which all instances are in one class initially and split instead of merging is done in each recursive step.
-
-In the hierarchical tree constructed by clustering analysis, the each node represent a class. However, the meaning of such nodes is unclear. And changes in input data (or structures) may result in a different hierarchical tree, making it more difficult to formalize the class definition. 
-
-Maximum common structure (MCS) based clustering and scaffold tree are more promising in presenting intermediate nodes in a hierarchy tree. 
-
-LibraryMCS\cite{librarymcs} is a commercial application that can perform MCS based clustering on a set of structures. Although there are no technical details of the underlying implementation available, it can be easily observed from the output that structures sharing a common substructure are organized in the same class, and the common substructures define the scopes of each class. Scaffold tree\cite{Schuffenhauer2007} is a hierarchal classification of scaffolds (molecular frameworks which are obtained by removing terminal side chains). By removing rings in scaffolds recursively, scaffolds are decompo sed into smaller ones which form the higher levels in the hierarchy tree. 
-
-Both MCS and scaffold based methods are very helpful in visualizing and giving an overview of the dataset. In the hierarchy tree output, a clear representation could be extracted, as either an MCS or a scaffold, and then be used as class presentation. But the output is highly dependent on the input, thus could not act as a universal chemical classification.\footnote{unintelligible sentence} 
-
 
 % This is a background section. 
 \subsection*{Logic-based reasoning and ontology}
@@ -432,6 +414,24 @@ Another classification technique which is of particular importance in the pharma
 % This is DEFINITELY best illustrated with a diagram. 
 Scaffolds often fix the overall structure of the molecule, which in bioactive and especially in synthetic chemistry has a large influence on the activity of the molecule in the biological system.  However, hierarchies based on scaffolding do not allow for the specification of overall properties of the molecule, and also does not allow for the annotation of similar aspects of molecules aside from their scaffolds. 
 % Further limitations?
+
+% Review on algorithm based chemical classification. Need to be relocated
+
+Since computers are introduced to chemistry research, chemical structures are formalized as graphs in computer systems, and most classification algorithms can not deal with such graphical data. In order to apply classification algorithms, molecular descriptors are calculated. As defined by Todeschini and Consonni\cite{Todeschini2000}, the molecular descriptor is the final result of a logic and mathematical procedure which transforms chemical information encoded within a symbolic representation of a molecule into a useful number or the result of some standardized experiment. Among calculated descriptors, if we focus on structural features, molecular fingerprint is a special form of descriptors which is defined as a string of boolean values in which each bit represent a feature. In the most common types of fingerprint, a feature could be either a pre-defined substructure or a random substructure mapped by hashing algorithms.
+
+Structure-activity relation (SAR) study is one of the hottest fields where classification algorithms are applied. Supervised machine learning methods, such as Bayesian classifier, decision trees and support vector machine,  are employed to classify compounds into positive or negative classes. The classification problem we are discussing here is to organize chemical structures in an understandable way. As mentioned above, hierarchical organization is crucial for easier human understanding. But none of the supervised methods mentioned above has the ability to extract such a hierarchical structure. Supervised machine learning requires a reasonable training set of chemicals which are already classified. Although existing databases like ChEBI and MeSH\footnote{Would be nice to have a url of MeSH here.} could act as training sets, the size of such data is still a tiny fraction of the enormous chemical space. What makes the problem even more challenging is that the leaf nodes of such classification trees normally contain few structures. 
+
+Other statistical methods like hierarchical clustering\cite{Adamson1981} do give a hierarchy. In general, hierarchical clustering relies on a similarity distance matrix, composed by pair-wise distance. Either agglomerative or divisive methods could be used. In an agglomerative clustering, all instances are initially assigned to its own class. Then a recursive merge is performed. In each step, two nearest classes are chosen to be merged, until all classes are merged into one. Divisive clustering is performed in an opposite manner, in which all instances are in one class initially and split instead of merging is done in each recursive step.
+
+In the hierarchical tree constructed by clustering analysis, the each node represent a class. However, the meaning of such nodes is unclear. And changes in input data (or structures) may result in a different hierarchical tree, making it more difficult to formalize the class definition. 
+
+Maximum common structure (MCS) based clustering and scaffold tree are more promising in presenting intermediate nodes in a hierarchy tree. 
+
+LibraryMCS\cite{librarymcs} is a commercial application that can perform MCS based clustering on a set of structures. Although there are no technical details of the underlying implementation available, it can be easily observed from the output that structures sharing a common substructure are organized in the same class, and the common substructures define the scopes of each class. Scaffold tree\cite{Schuffenhauer2007} is a hierarchal classification of scaffolds (molecular frameworks which are obtained by removing terminal side chains). By removing rings in scaffolds recursively, scaffolds are decompo sed into smaller ones which form the higher levels in the hierarchy tree. 
+
+Both MCS and scaffold based methods are very helpful in visualizing and giving an overview of the dataset. In the hierarchy tree output, a clear representation could be extracted, as either an MCS or a scaffold, and then be used as class presentation. But the output is highly dependent on the input, thus could not act as a universal chemical classification.\footnote{unintelligible sentence} 
+
+
 
 % The concept of scaffold may be as vague as skeleton;  it may be that X-containing entities are classified or instead that entities that are largely or mostly X are classified. If the latter, it would be very interesting to see how this is defined, as this can help us.  If the former, it is very similar to the approach which Leo and Michel have developed and reported on (cited later).
 
