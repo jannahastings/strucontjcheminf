@@ -58,6 +58,7 @@
 %\usepackage[latin1]{inputenc} %UNIX support if unicode package fails
 \urlstyle{rm}
 \usepackage{nameref}
+\usepackage{verbatim} 
 
 \usepackage[table]{xcolor}
 \usepackage{macros_tikz}
@@ -83,8 +84,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                     
 
 
-\def\includegraphic{}
-\def\includegraphics{}
+%\def\includegraphic{}
+%\def\includegraphics{}
 
 
 
@@ -149,11 +150,14 @@
        \and 
          Despoina Magka$^3$%
          \email{despoina.magka@cs.ox.ac.uk}%  logics
+       \and
+	     	 Colin Batchelor$^4$  % chemical ontology, text mining
+	     	 \email{batchelorc@rsc.org}
        \and 
          Lian Duan$^1$%
          \email{dlian@ebi.ac.uk} %  chemoinformatics
        \and 
-         Robert Stevens$^4$  % chemistry, ontology technology
+         Robert Stevens$^5$  % chemistry, ontology technology
          \email{robert.stevens@manchester.ac.uk}%
        \and 
          Marcus Ennis$^1$ % chebi
@@ -174,7 +178,8 @@
     \iid(1)Chemoinformatics and Metabolism, European Bioinformatics Institute, Hinxton, UK\\
     \iid(2)Swiss Center for Affective Sciences, University of Geneva, Switzerland\\
     \iid(3)Department of Computer Science, University of Oxford, UK\\
-    \iid(4)Manchester University, UK%\\
+    \iid(4)Royal Society of Chemistry, Cambridge, UK\\
+    \iid(5)Manchester University, UK%\\
 }%
 
 \maketitle
@@ -236,9 +241,9 @@ Systems which perform intelligent reasoning tasks need to rely on a diverse set 
 %%
 \section*{Background}
 
-Recent years have seen an explosion in the availability of data throughout the natural sciences. Primary data facilitates research through complex data-mining and knowledge discovery methods. However, with this information explosion, retrieving \textit{relevant} information from the deluge has become much more difficult. Computational processing is essential to filter, retrieve and organise such data. These goals are facilitated by \textit{formal ontologies}: machine-understandable\footnote{replaced computable with machine-understandable} encodings of human domain knowledge. These ontologies are used in several different ways \cite{lambrix2004}: to provide standardisation of terminology and identification across all entities in a domain so that multiple sources of data can be aggregated through comparable reference terms, to provide hierarchical organisation so that such aggregation can be performed at different levels and data can be browsed in an easily accessible fashion, and to allow for logic-based intelligent applications to be built which are able to perform complex reasoning tasks such as checking for errors and inconsistencies and deriving logical inferences. Logic-based knowledge representation (where ontologies serve as knowledge engineering artefacts)\footnote{changed content of parenthesis} can be contrasted with algorithmic ``knowledge" representation, in which software algorithms procedurally define outputs based on stated inputs, and with statistical ``knowledge" representation, in which complex statistical models are trained to produce outputs based on a given set of inputs by learning weights for a complex set of internal parameters.  The advantages of logic-based knowledge representation is that it allows the knowledge to be expressed \textit{as knowledge}, i.e. as statements which are easily comprehensible, true and self-contained.  Statistical methods operate as black boxes and procedural methods require a programmer in order to manipulate or extend them. 
+Recent years have seen an explosion in the availability of data throughout the natural sciences. Primary data facilitates research through complex data-mining and knowledge discovery methods. However, with this information explosion, retrieving \textit{relevant} information from the deluge has become much more difficult. Computational processing is essential to filter, retrieve and organise such data. These goals are facilitated by \textit{formal ontologies}: machine-understandable encodings of human domain knowledge. These ontologies are used in several different ways \cite{lambrix2004}: to provide standardisation of terminology and identification across all entities in a domain so that multiple sources of data can be aggregated through comparable reference terms, to provide hierarchical organisation so that such aggregation can be performed at different levels and data can be browsed in an easily accessible fashion, and to allow for logic-based intelligent applications to be built which are able to perform complex reasoning tasks such as checking for errors and inconsistencies and deriving logical inferences. Logic-based knowledge representation (where ontologies serve as knowledge engineering artefacts) can be contrasted with algorithmic ``knowledge" representation, in which software algorithms procedurally define outputs based on stated inputs, and with statistical ``knowledge" representation, in which complex statistical models are trained to produce outputs based on a given set of inputs by learning weights for a complex set of internal parameters.  The advantages of logic-based knowledge representation is that it allows the knowledge to be expressed \textit{as knowledge}, i.e. as statements which are easily comprehensible, true and self-contained.  Statistical methods operate as black boxes and procedural methods require a programmer in order to manipulate or extend them. 
 
-One example of a successful ontology in the biomedical domain is the Gene Ontology \cite{go2000}, which is used \textit{inter alia} for the statistical analysis of large-scale genetic data to identify genes which are significantly enriched for specific functions.  For the domain of biologically interesting chemistry, the Chemical Entities of Biological Interest ontology (ChEBI) \cite{chebi2010} provides a classification of chemical entities such as atoms, molecules and ions.  ChEBI organises chemical entities according to shared structural features, for example, carboxylic acids are all molecular entities that possess the characteristic carboxy group, and according to their activities in biological and chemical contexts, for example, acting as an antiviral agent. ChEBI is widely used as a database of chemical entities which can be queried both by structural classes and by functional annotations in the role ontology. The ontology has been applied in diverse applications such as annotation of chemicals in biological databases for pathways, interactions, and systems biology models \cite{matthews2009,libiomodels2010,kerrien2007}; chemical text mining \cite{corbett2006}; formalising the chemistry underlying biological ontologies \cite{mungall2010}; semantic similarity \cite{couto2010}; and metabolome prediction \cite{swainston2010}. Like the GO, ChEBI is manually maintained by a team of expert curators.  Historically, bio-ontologies such as GO and ChEBI have been developed as Directed Acyclic Graphs (DAGs), a deliberately simplified ontology format which allowed domain experts (non-logicians) to directly participate in ontology engineering. However, with the increasing availability of supporting tools and widespread adoption, there is a growing trend of evolution  towards the Web standard ontology language OWL \cite{OWL2NextStep}\footnote{changed the url to the (standard) owl 2 journal publication}, which provides a sophisticated suite of logic-based constructs to support eloquent knowledge representation and automated reasoning in real-world domains \cite{alterovitz2010}.
+One example of a successful ontology in the biomedical domain is the Gene Ontology \cite{go2000}, which is used \textit{inter alia} for the statistical analysis of large-scale genetic data to identify genes which are significantly enriched for specific functions.  For the domain of biologically interesting chemistry, the Chemical Entities of Biological Interest ontology (ChEBI) \cite{chebi2010} provides a classification of chemical entities such as atoms, molecules and ions.  ChEBI organises chemical entities according to shared structural features, for example, carboxylic acids are all molecular entities that possess the characteristic carboxy group, and according to their activities in biological and chemical contexts, for example, acting as an antiviral agent. ChEBI is widely used as a database of chemical entities which can be queried both by structural classes and by functional annotations in the role ontology. The ontology has been applied in diverse applications such as annotation of chemicals in biological databases for pathways, interactions, and systems biology models \cite{matthews2009,libiomodels2010,kerrien2007}; chemical text mining \cite{corbett2006}; formalising the chemistry underlying biological ontologies \cite{mungall2010}; semantic similarity \cite{couto2010}; and metabolome prediction \cite{swainston2010}. Like the GO, ChEBI is manually maintained by a team of expert curators.  Historically, bio-ontologies such as GO and ChEBI have been developed as Directed Acyclic Graphs (DAGs), a deliberately simplified ontology format which allowed domain experts (non-logicians) to directly participate in ontology engineering. However, with the increasing availability of supporting tools and widespread adoption, there is a growing trend of evolution  towards the Web standard ontology language OWL \cite{OWL2NextStep}, which provides a sophisticated suite of logic-based constructs to support eloquent knowledge representation and automated reasoning in real-world domains \cite{alterovitz2010}.
 
 Structure-based classification in chemistry exploits elegant regularities and symmetries in the underlying chemical domain.  Some of these regularities lead easily to algorithmic or statistical automated approaches to classification, and as a result, algorithmic approaches to hierarchical organisation of large-scale compound collections is a mature research area in chemoinformatics \cite{barnard1992,deshpande2005}. However, there are nevertheless several key benefits to adoption of the ontology-based approach in the chemistry domain, namely:
 \begin{itemize}
@@ -250,7 +255,7 @@ Structure-based classification in chemistry exploits elegant regularities and sy
 
 Conversely, there are several benefits to adopting chemoinformatics tools within the ontology engineering process in the domain of chemistry, such as to benefit from the well-developed and rapid algorithms for detecting parthood between chemicals and for computing properties.  In this paper, we present an analysis of the types of structure-based classes used in chemistry, and then discuss these as compared to available chemoinformatics algorithms for computing hierarchical ordering on sets of compounds and to the available constructions for encoding class definitions in chemical ontologies based on OWL.  We then explore aspects of chemoinformatics tools which we believe can enhance chemical ontology and explore problem areas in common to both fields which we believe can provide a stimulus for future research bridging the domains of chemoinformatics and computational logic. 
 
-The remainder of this paper is organised as follows. The remainder of this Background presents some relevant chemistry and ontology concepts.  Following that, in our Results we firstly present the types of classes used in chemical classification and thereafter compare these types of classes to the capabilities of chemoinformatics hierarchy construction methods in chemoinformatics and that of chemical ontologies. In our Discussion, we discuss the relationship between chemoinformatics and logical approaches and some applications of chemical ontology.  We conclude with our outlook and open research areas. 
+The remainder of this paper is organised as follows. This Background presents some relevant chemistry and ontology preliminaries.  Following that, in our Results we firstly present the types of classes used in chemical classification and thereafter compare these types of classes to the capabilities of chemoinformatics hierarchy construction methods in chemoinformatics and that of chemical ontologies. In our Discussion, we further elucidate the relationship between chemoinformatics and logical approaches, and present some applications of chemical ontology.  We conclude with our outlook and open research areas. 
 
 
 
@@ -284,23 +289,19 @@ Hybrid classes:  tricyclic antidepressant; tetracyclic antibiotic and so on \ldo
 \subsection*{Logic-based reasoning and ontology}
 \label{sec:backlogic}
 
-Logic-based representation lies at the heart of modern knowledge representation (KR) technologies. It employs formal methods developed in the context of mathematical logic in order to encode knowledge about the world. The key requirement for these methods is that the knowledge is stored in a machine-processable format. All though a whole range of KR formalisms have been investigated, a core feature that KR languages share is the use of a well-defined syntax and semantics. The syntax serves as the alphabet of the language: it provides a set of symbols and a set of rules that regulate the arrangement of the symbols. The semantics enriches the syntactic objects with a meaning so that syntactic expressions (also known as \emph{axioms}) have a universal and predefined interpretation. A set of axioms that model domain-specific knowledge about an aspect of the world constitutes an \emph{ontology}. 
+Logic-based representation lies at the heart of modern knowledge representation (KR) technologies. It employs formal methods developed in the context of mathematical logic in order to encode knowledge about the world. The key requirement for these methods is that the knowledge is stored in a machine-processable format. Although a wide range of KR formalisms have been investigated, a core feature that KR languages share is the use of a well-defined syntax and semantics. The syntax serves as the alphabet of the language: it provides a set of symbols and a set of rules that regulate the arrangement of the symbols. The semantics enriches the syntactic objects with a meaning so that syntactic expressions (also known as \emph{axioms}) have a universal and predefined interpretation. A set of axioms that model domain-specific knowledge about an aspect of the world constitutes an \emph{ontology}. 
 
-The amenability of KR languages to automated reasoning is of crucial importance. A reasoning algorithm --relying on principles of logical deduction-- computes the inferences that follow from a  set of formally defined axioms; note that a reasoning algorithm is uniquely associated with a KR language, that is it is tied to the specific syntax and semantics of the language. A reasoning engine can be used to check the logical consistency of a set of logical axioms. For instance, if a knowledge base (i) defines the organic and inorganic compounds as disjoint chemical classes (ii) contains the fact that cobalamin is an organic compound and (iii) also classifies cobalamin as inorganic, then a contradiction will be detected. Another standard reasoning task is the discovery of information that is not explicitly stated in the ontology. For example, if an ontology categorises cobalamin as B vitamin and also asserts that B vitamins participate to cell metabolism, then the fact that cobalamin participates to cell metabolism is derived. The automation of the above --traditionally performed by humans-- tasks has a clear advantage as it permits the allocation of research resources to more intellectually intense activities.
+The amenability of KR languages to automated reasoning is of crucial importance. A reasoning algorithm -- relying on principles of logical deduction -- computes the inferences that follow from a set of formally defined axioms; note that a reasoning algorithm is uniquely associated with a KR language, that is, it is tied to the specific syntax and semantics of the language. A reasoning engine can be used to check the logical consistency of a set of logical axioms. For instance, if a knowledge base (i) defines the organic and inorganic compounds as disjoint chemical classes (ii) contains the fact that cobalamin is an organic compound and (iii) also classifies cobalamin as inorganic, then a contradiction will be detected. Another standard reasoning task is the discovery of information that is not explicitly stated in the ontology. For example, if an ontology categorises cobalamin as B vitamin and also asserts that B vitamins participate in cell metabolism, then the fact that cobalamin participates in cell metabolism is derived. The automation of the above -- traditionally performed by humans -- tasks has a clear advantage as it permits the allocation of research resources to more intellectually intense activities.
 
-A reasoning procedure is required to exhibit certain properties in order to be practically useful. Namely, a reasoning algorithm needs to derive \emph{correct} inferences, that is inferences which are in accordance with the semantics of the language; this property is known as \emph{soundness}. Additionally a reasoning algorithm oughts to be \emph{complete}, i.e. to compute \emph{all} the correct inferences that are entailed by a set of axioms. Finally, an essential need for a reasoning algorithm is to \emph{terminate}, that is to halt after a finite amount of time. A vital contribution of logic is that it can offer guarantees --by means of formal proofs-- for the soundness, completeness and termination of a reasoning algorithm for \emph{all} input ontologies. A KR formalism for which a sound, complete and terminating reasoning algorithm exists is (informally) called \emph{decidable}.\footnote{According to the formal definitions of logic, the \emph{problem} of deciding whether a knowledge base is inconsistent is (un)decidable, rather than the actual language.} As a consequence, decidability is a highly desirable feature for a logic-based formalism in use.
+A reasoning procedure is required to exhibit certain properties in order to be practically useful. Namely, a reasoning algorithm needs to derive \emph{correct} inferences, that is inferences which are in accordance with the semantics of the language; this property is known as \emph{soundness}. Additionally a reasoning algorithm ought to be \emph{complete}, i.e. to compute \emph{all} the correct inferences that are entailed by a set of axioms. Finally, an essential need for a reasoning algorithm is to \emph{terminate}, that is to halt after a finite amount of time. A vital contribution of logic is that it can offer guarantees -- by means of formal proofs -- for the soundness, completeness and termination of a reasoning algorithm for \emph{all} input ontologies. A KR formalism for which a sound, complete and terminating reasoning algorithm exists is (informally) called \emph{decidable}.\footnote{According to the formal definitions of logic, it is the \emph{problem} of deciding whether a knowledge base is inconsistent that is (un)decidable, rather than the actual language.} As a consequence, decidability is a highly desirable feature for a logic-based formalism to enable real-world applications.
 
-Apart from decidability, another important feature of KR formalisms is tractability, that is how expensive the reasoning tasks are in terms of computational resources, e.g. performance time. The trade-off between the expressive power and the tractabiligy of a logic-based language  is a fundamental one: increasing the expressivity of the language usually results in a more resource-consuming reasoning algorithm or even undecidability. For instance, consider first-order logic (FOL) and propositional logic (PL): FOL allows to model a much broader range of situations than PL, as e.g. that for every molecule X, if X is organic and contains a hydroxyl group, then X is an alcohol, whereas in PL one may state an implication only for a \emph{specific} molecule. Nevertheless, reasoning in propositional logic is decidable, whereas reasoning tasks in unrestrained first-order logic are undecidable.
+Apart from decidability, another important feature of KR formalisms is tractability, that is how expensive the reasoning tasks are in terms of computational resources, e.g. performance time. The trade-off between the expressive power and the tractability of a logic-based language is a fundamental one: increasing the expressivity of the language usually results in a more resource-consuming reasoning algorithm or even undecidability. For instance, consider first-order logic (FOL) and propositional logic (PL): FOL allows one to model a much broader range of situations than PL, for example that for every molecule X, if X is organic and contains a hydroxyl group, then X is an alcohol, whereas in PL one may state an implication only for a \emph{specific} molecule. Nevertheless, reasoning in propositional logic is decidable, whereas reasoning tasks in unrestrained first-order logic are undecidable.
 
-The need for decidable formalisms has been the driving force behind the development of Description Logics (DLs), a family of logic-based languages with well-understood computational properties that allow for different sorts of definitorial statements when building a knowledge base. DLs serve as the underlying formalism for the Web Ontology Language (OWL) which is a W3C-standardised  knowledge representation language that is widely used both in industry and in academia; ontologies such as GO or ChEBI are expressed in OWL. A powerful feature of OWL is the ability to perform \emph{automatic classification} based on \emph{full class definitions}. A full class definition is specified in terms of necessary and sufficient conditions for class membership. For instance, the OWL axiom $\mathsf{Molecule \sqcap MetallicCompound} \equiv \mathsf{Compound \sqcap \exists hasAtom.Metal}$ states that an object is a metallic compound if and only if it is a compound and it has a metal atom. Due to the machine-understandable nature of OWL definitions, OWL is the standard knowledge representation and reasoning language for use in the Semantic Web, which differentiates itself from the Syntactic Web by associating Web documents with a well-defined meaning. Significant advances in the DL research lead to the release of OWL 2\footnote{http://www.w3.org/TR/owl2-overview/} which improves on the first version of OWL by providing new expressive features, such as more advanced handling of data values and ranges (i.e. qualified cardinality restrictions and property chains).
+The need for decidable formalisms has been the driving force behind the development of Description Logics (DLs), a family of logic-based languages with well-understood computational properties that allow for different sorts of definitorial statements when building a knowledge base. DLs serve as the underlying formalism for the Web Ontology Language (OWL) which is a W3C-standardised  knowledge representation language that is widely used both in industry and in academia; ontologies such as GO or ChEBI are expressed in OWL. A powerful feature of OWL is the ability to perform \emph{automatic classification} based on \emph{full class definitions}. A full class definition is specified in terms of necessary and sufficient conditions for class membership. For instance, the OWL axiom $\mathsf{Molecule \sqcap MetallicCompound} \equiv \mathsf{Compound \sqcap \exists hasAtom.MetalAtom}$ states that an object is a metallic compound if and only if it is a compound and it has a metal atom. Due to the machine-understandable nature of OWL definitions, OWL is the standard knowledge representation and reasoning language for use in the Semantic Web, which differentiates itself from the Syntactic Web by associating Web documents with a well-defined meaning. Significant advances in the DL research lead to the release of OWL 2\footnote{http://www.w3.org/TR/owl2-overview/} which improves on the first version of OWL by providing new expressive features, such as more advanced handling of data values and ranges (i.e. qualified cardinality restrictions and property chains).
 
-A DL ontology may include two kinds of logic-based axioms: expressions that encode conceptual knowledge about the world (also known as \emph{TBox axioms}) and instance level statements that describe a particular situation (also known as \emph{ABox axioms}). An example of a TBox axiom is $ \mathsf{ \exists hasPart.Carboxyl} \sqsubseteq \mathsf{CarboxylicAcid}$ which says that if a molecule has a carboxyl part, then it is a carboxylic acid. On the other hand, the set $\mathsf{hasPart(m,p),Molecule(m),Amine(p)}$ is an example of ABox axioms that describe \emph{one} particular molecule which is explicitly named in the ontology (the molecule $\mathsf{m}$).
+A DL ontology may include two kinds of logic-based axioms: expressions that encode conceptual knowledge about the world (also known as \emph{TBox axioms}) and instance level statements that describe a particular situation (also known as \emph{ABox axioms}). An example of a TBox axiom is $ \mathsf{ \exists hasPart.Carboxyl} \sqsubseteq \mathsf{CarboxylicAcid}$ which says that if a molecule has a carboxyl part, then it is a carboxylic acid. On the other hand, the set $\mathsf{hasPart(m,p),Molecule(m),Amine(p)}$ gives ABox axioms that describe \emph{one} particular molecule which is explicitly named in the ontology (the molecule $\mathsf{m}$).
 
-In spite of the fact that OWL is a very efficient KR formalism for the encoding of tree-like structures, it is fundamentally inable to correctly represent cyclic structures, such as molecular entities with rings \cite{magka2010}. OWL exhibits the tree-model property \cite{VardiModalLogic} which on the one hand ensures important computational properties, such as decidability, but on the other hand prevents the users from describing  non-tree-like structures using OWL axioms. For instance, one may state using OWL axioms that cyclobutane has four carbon atoms, but it is not possible to specify that these four atoms are arranged in a ring. Therefore, one of the prevailing challenges in chemical knowledge representation is crafting logic-based formalisms that are able to faithfully represent cyclic structures and, thus, pave the way for ontology-based applications that aim to classify chemical compounds.
-
-%  DESPOINA TO HELP WITH THIS SECTION (i have now added text to this section)
- 
-%% ANY OTHER LOGIC BACKGROUND NEEDED for the remainder of the paper? (so far no, but we will see whether we need any when we will be done with the classificaiton section)
+In spite of the fact that OWL is a very efficient KR formalism for the encoding of tree-like structures (i.e. those whose `branches' do not rejoin), it is fundamentally unable to correctly represent cyclic structures, such as molecular entities containing ring structures \cite{magka2010}. OWL exhibits the tree-model property \cite{VardiModalLogic} which on the one hand ensures important computational properties, such as decidability, but on the other hand prevents the users from describing non-tree-like structures using OWL axioms. For instance, one may state using OWL axioms that cyclobutane has four carbon atoms, but it is not possible to specify that these four atoms are arranged in a ring. Therefore, one of the prevailing challenges in chemical knowledge representation is crafting logic-based formalisms that are able to faithfully represent cyclic structures and, thus, pave the way for ontology-based applications that automatically classify chemical compounds.
 
 
 \section*{Results}
@@ -386,7 +387,6 @@ Also, polymers (strings of repeating units).
 Given all of the above different types of elements of chemical class definitions, perhaps the most interesting classes arise in combinations of the various different elements, including combinations of structure-based class elements and non-structure-based groupings:  tricyclic antidepressant; tetracyclic antibiotic and so on...
 
 
-
 %%
 %%  Compare the above class types to the various available methods of automatic hierarchy construction in chemoinformatics
 %%  Intended to also serve as a related work review on classification methods in chemoinformatics
@@ -394,46 +394,34 @@ Given all of the above different types of elements of chemical class definitions
 \subsection*{Algorithmic and statistical approaches to automatic hierarchy construction}
 \label{sec:resultscheminf}
 
-%% DUAN TO HELP WITH THIS SECTION
+%The interesting question, which is not yet addressed in the below -- given the above types of chemical class definitions, and their implied hierarchical relationships, to what extent can the existing chemoinformatics approaches construct hierarchies in which the nodes correspond to classes defined in the above way? 
 
-The interesting question is -- given the above types of chemical class definitions, and their implied hierarchical relationships, to what extent can the existing chemoinformatics approaches construct hierarchies in which the nodes correspond to classes defined in the above way? 
+Chemoinformatics solutions have been developed which facilitate classification of sets of chemical entities by automatic methods.  Such automatic classification systems are in common use in many areas of chemistry including drug discovery.  Almost since the inception of chemoinformatics, chemical structures have been formalized as graphs in computer systems. Yet, standard algorithms for automated classification tend not to be easily amenable to operation on arbitrary graph-based data structures, so the graphs are often transformed -- preferably through inexpensive algorithms -- into characteristic \textit{features} or \textit{descriptors}, which then in turn form the input to classification algorithms. 
 
-The basic units of chemoinformatics approaches are the substructure search, similarity search and graph isomorphism search.  Substructure search in particular can be used directly to address the construction of hierarchies by parts. 
+As defined by Todeschini and Consonni\cite{Todeschini2000}, a molecular descriptor is the final result of a logical and mathematical procedure which transforms chemical information encoded within a symbolic representation of a molecule into a useful number (calculated descriptors), or, the result of standardized experiments (experimental descriptors). Among calculated descriptors, if we focus on structural features, molecular fingerprints are a special form of descriptors which are defined as strings of boolean values, in which each bit represents a feature.  In the most common types of fingerprint, a feature could be either a pre-defined substructure or a random substructure mapped by hashing algorithms.
 
-SMARTS and R-GROUPS
+Features are then passed to hierarchy construction algorithms such as \textit{hierarchical similarity clustering} \cite{Adamson1991,barnard1992}.  In these methods, similarity between compounds is computed on a pairwise basis, and compounds are then grouped together in clusters which represent high mutual similarity along a particular dimension.  Pairwise similarity is usually calculated based on a comparison of calculated descriptors or fingerprints for the molecule, rather than on the molecular graph directly.  Either agglomerative or divisive methods could be used. In agglomerative clustering, all instances are initially assigned to their own class, and a recursive merge is performed by the algorithm, which chooses two nearest classes to be merged in each step, until all classes are merged into one. Divisive clustering is performed in the opposite fashion: assigning all instances to one class initially, and performing a split instead of a merge in each recursive step.  
 
-Machine learning then has to be discussed.  In particular the way that machine learning allows application of certain types of hierarchy construction on a larger scale than exhaustive pairwise alignment?  
+The results of such methods are additionally dependent both on the algorithms used to convert the molecular graph into fingerprints or collections of features, and on the calculation of similarity between resulting feature sets. There are thus many different algorithms for computing similarity measures between compounds and for aggregating compounds into clusters based on pairwise similarity measures, leading to arbitrarily many different classification hierarchies as their result, even given the same compound collection as input.  A limitation of the similarity-based hierarchical clustering analysis is thus that each resulting node in the hierarchy represent a class with an unclear meaning (and there is no formal definition for such nodes).  Changes in input data (or structures) may result in a different hierarchical tree with different intermediate nodes, making it very difficult to compare results across datasets even when the same clustering and fingerprinting algorithms are used in constructing the output. Another limitation is that most feature sets on which similarity measures are calculated, in order to be efficiently computable, represent only a subset of the total features of the molecules concerned, and local paths through the structures predominate over the (more expensive) overall molecular structure. Thus, molecules may turn out to appear quite similar according to such an algorithm (due, perhaps, to a predominance of similar parts) while displaying rather different structures overall.  This problem is exacerbated for molecules of high structural regularity (e.g. polycyclic carbon compounds).  Nevertheless, similarity landscapes are of paramount importance in reducing the complexity and understanding the features of large collections of compounds. 
+ 
+%To what extent are / should SMARTS and R-GROUPS be relevant here?
 
-% SIMILARITY
-Chemoinformatics solutions have been developed which facilitate classification of sets of chemical entities by automatic methods.  Such automatic classification systems are in common use in many areas of chemistry including drug discovery. One example of such a classification technique is classification based on \textit{hierarchical similarity clustering} \cite{barnard1992}.  In this technique, similarity between compounds is computed on a pairwise basis, and compounds are then grouped together in clusters of high mutual similarity. There are many different algorithms for computing similarity measures between compounds and for aggregating compounds into clusters based on pairwise similarity measures. Different algorithms lead to different classification results. 
-%Limitations of this approach?  
-One limitation is that most similarity measures, in order to be efficiently computable, compute only a subset of the total features of the molecules concerned, and local paths predominate over overall molecular structure. Thus, molecules may turn out to be quite similar according to such an algorithm while containing overall a rather different structure. Examples are xxxx and yyyy.  This problem is exacerbated for molecules of high structural regularity (e.g. polycyclic carbon compounds).  Nevertheless, similarity landscapes are of paramount importance in reducing the complexity and understanding the features of large collections of compounds. % Get Duan to check this section and the next. 
+Beyond algorithmic approaches, statistical machine learning approaches have become increasingly important in the classification of chemicals, albeit with slightly different application.  Structure-activity relationship (SAR) studies have become one of the hottest fields where machine learning approaches are applied. Supervised methods, such as Bayesian classifiers, decision trees and support vector machines,  are employed to classify compounds into positive or negative groups for a particular functional activity class.  However, these approaches, resulting as they do in binary output, do not immediately lend themselves to the complex hierarchical classification task.  Supervised machine learning for the prediction of chemical class membership based on an existing hierarchy is an interesting option but it necessitates a simplification of the possible hierarchy to reduce the number of classes to levels which even the most sophisticated multi-class classification technique can accomplish, and furthermore requires a reasonably large training set of chemicals which are already classified.  Although existing databases like ChEBI and MeSH~\cite{meshUrl} could act as training sets for such an endeavor, the size of these data is still a tiny fraction of the enormous chemical space, and the problem is further complicated by the fact that the leaf nodes of such classification trees normally contain few structures. 
+
+%Machine learning has to be further discussed.  In particular the way that machine learning allows application of certain types of hierarchy construction on a larger scale than exhaustive pairwise alignment?  
 
 % SCAFFOLDS (PARTHOOD)
-Another classification technique which is of particular importance in the pharmaceutical industry is classification based on substructures \cite{deshpande2005} or (relatedly) molecular scaffolding \cite{FindSomething}.  In this technique, substructures of the molecule are taken at increasing size, and molecules are classified based on the presence of such substructures.  Classification based on scaffolds form a hierarchy based on composition, and in pharmaceutical chemistry organic ring structures are usually taken as the backbone.  Scaffolds are then decorated with a variety of functional groups, and scaffolds may be combined to form scaffolds of increasing complexity. 
-% This is DEFINITELY best illustrated with a diagram. 
-Scaffolds often fix the overall structure of the molecule, which in bioactive and especially in synthetic chemistry has a large influence on the activity of the molecule in the biological system.  However, hierarchies based on scaffolding do not allow for the specification of overall properties of the molecule, and also does not allow for the annotation of similar aspects of molecules aside from their scaffolds. 
+Beyond feature-based, similarity-based and statistical approaches to automatic classification, an additional approach in common use in chemoinformatics is classification based on substructures~\cite{deshpande2005}.  A substructure represents a wholly contained part of a molecule, and characteristic molecular substructures (skeletons or scaffolds and attached groups) are usually highly correlated with characteristic activities.  Nodes in hierarchies based on substructures are able to be labelled with the relevant substructure that is shared for all members of the class, thus, have more meaning to humans than statistical or similarity-based classes. Variants on this approach include Maximum Common Substructure (MCS) based clustering and scaffold tree clustering. LibraryMCS~\cite{librarymcs} is a commercial application that can perform MCS based clustering on a set of structures. Although the technical details of the underlying implementation are not available, from the output it can be determined that structures sharing a common substructure are organized in the same class, and the common substructures define the scope of each class.  Scaffold Tree~\cite{Schuffenhauer2007} is a product which performs a hierarchal classification of scaffolds, which are molecular frameworks obtained by removing terminal side chains.  By removing rings in scaffolds recursively, scaffolds are decomposed into smaller ones which form the higher levels in the hierarchy tree.  
+
+Both MCS- and scaffold-based methods are very helpful in visualizing and giving an overview of a given dataset.  Furthermore, the intermediate nodes which represent shared scaffolds or MCS structures correspond to the definition of classes based on an important part.  These definitions could be extracted and formalized.  But the output of these algorithmic approaches is still highly dependent on the input, thus could not act as a universal chemical classification system. (Even if it were possible to guarantee that the input corresponded to the universal chemical space, it is likely that the consequence would be a non-terminating classification algorithm.)  These approaches are generally directly useful, since scaffolds often specify the general overall structure of the molecule, which in bioactive and especially in synthetic chemistry has a large influence on the activity of the molecule in the biological system.  However, hierarchies based on scaffolding do not allow for the specification of overall properties of the molecule, nor for clustering based on similar aspects of molecules aside from their scaffolds.  
 % Further limitations?
 
-% Review on algorithm based chemical classification. Need to be relocated
 
-Since computers are introduced to chemistry research, chemical structures are formalized as graphs in computer systems, and most classification algorithms can not deal with such graphical data. In order to apply classification algorithms, molecular descriptors are calculated. As defined by Todeschini and Consonni\cite{Todeschini2000}, the molecular descriptor is the final result of a logic and mathematical procedure which transforms chemical information encoded within a symbolic representation of a molecule into a useful number or the result of some standardized experiment. Among calculated descriptors, if we focus on structural features, molecular fingerprint is a special form of descriptors which is defined as a string of boolean values in which each bit represent a feature. In the most common types of fingerprint, a feature could be either a pre-defined substructure or a random substructure mapped by hashing algorithms.
 
-Structure-activity relation (SAR) study is one of the hottest fields where classification algorithms are applied. Supervised machine learning methods, such as Bayesian classifier, decision trees and support vector machine,  are employed to classify compounds into positive or negative classes. The classification problem we are discussing here is to organize chemical structures in an understandable way. As mentioned above, hierarchical organization is crucial for easier human understanding. But none of the supervised methods mentioned above has the ability to extract such a hierarchical structure. Supervised machine learning requires a reasonable training set of chemicals which are already classified. Although existing databases like ChEBI and MeSH\footnote{Would be nice to have a url of MeSH here.} could act as training sets, the size of such data is still a tiny fraction of the enormous chemical space. What makes the problem even more challenging is that the leaf nodes of such classification trees normally contain few structures. 
-
-Other statistical methods like hierarchical clustering\cite{Adamson1981} do give a hierarchy. In general, hierarchical clustering relies on a similarity distance matrix, composed by pair-wise distance. Either agglomerative or divisive methods could be used. In an agglomerative clustering, all instances are initially assigned to its own class. Then a recursive merge is performed. In each step, two nearest classes are chosen to be merged, until all classes are merged into one. Divisive clustering is performed in an opposite manner, in which all instances are in one class initially and split instead of merging is done in each recursive step.
-
-In the hierarchical tree constructed by clustering analysis, the each node represent a class. However, the meaning of such nodes is unclear. And changes in input data (or structures) may result in a different hierarchical tree, making it more difficult to formalize the class definition. 
-
-Maximum common structure (MCS) based clustering and scaffold tree are more promising in presenting intermediate nodes in a hierarchy tree. 
-
-LibraryMCS\cite{librarymcs} is a commercial application that can perform MCS based clustering on a set of structures. Although there are no technical details of the underlying implementation available, it can be easily observed from the output that structures sharing a common substructure are organized in the same class, and the common substructures define the scopes of each class. Scaffold tree\cite{Schuffenhauer2007} is a hierarchal classification of scaffolds (molecular frameworks which are obtained by removing terminal side chains). By removing rings in scaffolds recursively, scaffolds are decompo sed into smaller ones which form the higher levels in the hierarchy tree. 
-
-Both MCS and scaffold based methods are very helpful in visualizing and giving an overview of the dataset. In the hierarchy tree output, a clear representation could be extracted, as either an MCS or a scaffold, and then be used as class presentation. But the output is highly dependent on the input, thus could not act as a universal chemical classification.\footnote{unintelligible sentence} 
+% The concept of scaffold may be as vague as skeleton;  it may be that X-containing entities are classified or instead that entities that are largely or mostly X are classified. If the latter, it would be very interesting to see how this is defined, as this can help us.  If the former, it is very similar to the approach which Leo and Michel have developed and reported on (to be cited later).
 
 
 
-% The concept of scaffold may be as vague as skeleton;  it may be that X-containing entities are classified or instead that entities that are largely or mostly X are classified. If the latter, it would be very interesting to see how this is defined, as this can help us.  If the former, it is very similar to the approach which Leo and Michel have developed and reported on (cited later).
 
 
 %%
@@ -486,6 +474,11 @@ A number of chemical classes are specified using numerical features of chemical 
 
 One of the first attempts to overcome the limitations of OWL to represent cycles was the DL-safe rules \cite{DLSafeBoris}. The extension of OWL ontologies with DL-safe rules arose as a formalism that allowed to perform certain reasoning tasks over non-tree-like structures while preserving decidability. Nevertheless, the restrictions that are necessary in order to enforce decidability restrain the applicability of the rules to only explicitly named objects of the ontology--that is individuals that appear in the ABox axioms. We illustrate this by means of an example: assume a simplified knowledge base whose contents appear in Table~\ref{tab:DL-safe-example}.\footnote{In the rest of the paper, we assume that there is an extra axiom stating that the roles $\mathsf{SingleBond}$ and $\mathsf{DoubleBond}$ are symmetric.} 
 %
+
+%MOVED to end ... as per template requirement
+
+\begin{comment}
+
 \begin{table}[t]
 \centering
 \caption{DL-safe rules example}\label{tab:DL-safe-example}
@@ -502,12 +495,20 @@ One of the first attempts to overcome the limitations of OWL to represent cycles
 \end{tabular}
 \end{table}
 %
+
+\end{comment}
+
 An inference engine will derive the assertion $\mathsf{CyclicMolecule(m)}$ but not the subsumption $\mathsf{Benzene \sqsubseteq CyclicMolecule}$. This example shows how the DL-safe rules extension does not allow to deduce subclass relations that concern \emph{all} the benzene molecules, that is to reason about the \emph{schema} of the ontology. 
 
 In order to address the need for schema-level reasoning over structured objects as outlined above, a further OWL extension was suggested that combines OWL, rules and \emph{Description Graphs} (DGs), a new modelling primitive for the representation of complex structures  \cite{mghs09graphs-journal}. Let us present how DGs augment the expressive power of OWL with the help of an example. Assume that one models the benzene ring with the following OWL axiom, which states that an object is a benzene ring if and only if it has exactly six carbon atoms each of which has a single bond with exactly one carbon atom and a double bond with exactly one carbon atom. 
 $$ \mathsf{BenzeneRing \equiv (= 6) hasAtom. (Carbon \sqcap (= 1) hasSingleBondWith.Carbon \sqcap (= 1) hasDoubleBondWith.Carbon)}$$
 Figure~\ref{fig:benzene}(a) shows the ``canonical'' model of the benzene ring according to the OWL semantics: informally, the canonical model is a conceptual representation of what the logical definition of benzene ring encodes with as little information derivable from the logical formula as possible. The shape of the canonical model plays an important role, as it determines the subclass relations that are entailed by the knowledge base: the more accurately the canonical model represents a molecular structure, the richer the outputed hierarchy for this molecule is. If one chooses to describe the benzene ring with the help of DGs, the respective canonical model is the one that appears in Figure~\ref{fig:benzene}(b) which, in contrast to the model of Figure~\ref{fig:benzene}(a), manages to capture the underlying cyclic structure. This has significant benefits as additional inferences can be drawn and additional chemical classes that depend on ring structures can be defined within the DG formalism. As a direct consequence of the increased expressivity, a number of syntactic restrictions are enforced to the axioms of the knowledge base in order to guarantee decidability. One of these restrictions is the \emph{strong separation requirement} that prevents the user from mixing properties used in the OWL ontology with properties used in the DGs axioms. Therefore, if one uses the property $\mathsf{hasSingleBondWith}$ in the DGs formulas, then 
 $\mathsf{hasSingleBondWith}$ may not occur in e.g. an axiom of the form $\mathsf{hasSingleBondWith} \sqsubseteq \mathsf{hasBondWith}$. The DGs formalism has been implemented and the implementation has served as the basis for a java tool that performs structure-based classification over the chemical entities of the ChEBI ontology. Although, this is one of the few OWL-based applications where cyclic structures are described with adequate precision, the range of chemical classes that can be axiomatised is somewhat limited by the constraints imposed by the underpinning formalism, such as the strong separation requirement.
+
+%% Converted to straight image, sadly, as per BMC journal requirements.  The figure itself will need to be excluded from the PDF in the final version for submission -- and included in the submission as a separate file.  But I leave it in for now (at the end of the document)
+
+
+\begin{comment}
 
 \begin{figure}[t] 
 \centering  
@@ -635,6 +636,10 @@ $\mathsf{hasSingleBondWith}$ may not occur in e.g. an axiom of the form $\mathsf
 \caption{The chemical structure and the models of benzene ring}\label{fig:benzene}
 \end{figure}
 
+\end{comment}
+
+
+
 In an effort to relax the limitations imposed by the DGs approach, a radically different KR formalism was suggested with the name \emph{Description Graph Logic Programs} (DGLPs) \cite{magka2011}. The DGLP framework adopts the logic programming paradigm in order to represent objects whose parts are interconnected in arbitrary ways. Unlike description logics, the decidability guarantees of logic programs do not rely on the tree-model property and, so, the modeller is no longer restricted to tree-like structures. Since DGLPs ensure decidability in different ways, the need for strong property separation is eliminated; thus, the ontology designer is free to use the same properties for both structured objects and general knowledge of the domain which implies more flexibility in the  modelling decisions.  
 
 
@@ -697,9 +702,9 @@ For these reasons, chemical ontology has a valid place alongside the more automa
 
 Harnessing the strengths of both approaches in complementary systems \ldots
 
-%% What are the challenges in harnessing chemoinformatics from within a logical framework?  What are the needs on integrative approaches?
+What are the challenges in harnessing chemoinformatics from within a logical framework?  What are the needs on integrative approaches?
 
-%% What will a hybrid system look like and what is it good for? 
+What will a hybrid system look like and what is it good for? 
 
 
 Pre-computing and asserting all parts as a workaround to the problem with directly modelling structured objects: 
@@ -729,15 +734,22 @@ exciting applications of the future too: nanotechnology and biotechnology
 \subsection*{Representing the ChEBI ontology in OWL}
 
 -- OWL API
+
 -- ChEBI ontology data model and the ChEBI maintenance suite, in particular the tooling for chemical structures
+
 -- Conversion of relationships into all-some restrictions
+
 -- InChI as annotations
 
 \subsection*{Representing chemicals as description graphs}
 -- Model for molecules (MOLfile to DG)
+
 -- Software involved
+
 -- How we create description graphs
+
 -- Model for DGs at the class level (not the fully specified;)
+
 -- Relationship to SMARTS, R-Groups
 
 \bigskip
@@ -794,12 +806,22 @@ exciting applications of the future too: nanotechnology and biotechnology
 %% Do not use \listoffigures as most will included as separate files
 
 \section*{Figures}
+\begin{comment}
   \subsection*{Figure 1 - Sample figure title}
       A short description of the figure content
       should go here.
 
   \subsection*{Figure 2 - Sample figure title}
       Figure legend text.
+\end{comment}
+
+\subsection*{Figure 1 -- figure title}
+\begin{figure}[h!]
+  \caption{The chemical structure and the models of benzene ring}
+  \label{fig:benzene}
+  \centering
+    \includegraphics[width=\textwidth]{images/chemgraphimg.png}
+\end{figure}
 
 
 
@@ -810,8 +832,10 @@ exciting applications of the future too: nanotechnology and biotechnology
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Use of \listoftables is discouraged.
-%%
+
 \section*{Tables}
+
+\begin{comment}
   \subsection*{Table 1 - Sample table title}
     Here is an example of a \emph{small} table in \LaTeX\ using  
     \verb|\tabular{...}|. This is where the description of the table 
@@ -825,7 +849,26 @@ exciting applications of the future too: nanotechnology and biotechnology
         A3 & ..  & .  \\ \hline
       \end{tabular}
       }
+\end{comment}
 
+%% Table 1
+\subsection*{Table 1 -- table title}
+\begin{table}[h!]
+\centering
+\caption{DL-safe rules example}\label{tab:DL-safe-example}
+\rowcolors{1}{tableShade}{white}
+\begin{tabular}{|l|l|}
+    \hline
+    TBox axiom    & $\mathsf{\exists hasAtom.RingAtom \sqsubseteq CyclicMolecule}$ \\
+    ABox axioms & $\mathsf{Benzene(m),singleBond(a_1,a_2),doubleBond(a_2,a_3),singleBond(a_3,a_4),doubleBond(a_4,a_5),}$ \\ 
+     & $\mathsf{singleBond(a_5,a_6),doubleBond(a_6,a_1),Carbon(a_i),hasAtom(m,a_i)}$  for each $ 1 \leq \mathsf{i} \leq 6$ \\
+     DL-safe rule &  $\mathsf{ \bigwedge_{1 \leq i \leq 6}   Carbon(x_i)   \wedge singleBond(x_1,x_2) \wedge doubleBond(x_2,x_3) \wedge singleBond(x_3,x_4)} \wedge{}$ \\
+     & $\mathsf{doubleBond(x_4,x_5) \wedge singleBond(x_5,x_6) \wedge doubleBond(x_6,x_1) \rightarrow RingAtom(x_1)}$ \\
+      
+     \hline 
+\end{tabular}
+\end{table}
+%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -833,7 +876,7 @@ exciting applications of the future too: nanotechnology and biotechnology
 %% Additional Files              %%
 %%                               %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\begin{comment}
 \section*{Additional Files}
   \subsection*{Additional file 1 --- Sample additional file title}
     Additional file descriptions text (including details of how to
@@ -842,7 +885,7 @@ exciting applications of the future too: nanotechnology and biotechnology
 
   \subsection*{Additional file 2 --- Sample additional file title}
     Additional file descriptions text.
-
+\end{comment}
 
 \end{bmcformat}
 \end{document}
