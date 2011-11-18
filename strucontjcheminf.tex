@@ -850,6 +850,15 @@ Higher-level classes were identified as those that were not themselves defined b
 
 The full list of textual class definitions, together with their class IDs and names, that formed the input to this analysis, is included in Supplementary File 1. %%TODO
 
+
+\subsection*{Generation of scaffold and MCS hierarchies}
+
+Organic heterocyclic compounds(CHEBI:24532) were processed by scaffold tree and ChemAxon LibraryMCS. The class contains 3397 entities with chemical structures, for each of which at least one ring system is present. The structures have a big diversity, with simple structures like pyridines to complex natural product structures like indole alkaloids. 
+
+LibraryMCS was executed in its GUI interface. Only highly frequent scaffolds were selected manually for visualization. In Figure.X, the number of structues containing the MCS is annotated beside the structure. All 3393 structures have a MCS of 'A', which means any atom. Other larger MCS were displayed as leaf nodes of root MCS 'A'. Some interesting MCS like imidazolidine were found, but uninteresting MCS like carbon chains also appeared. Even in the third layer, there were still 851 structures are in class 'A', which means no interesting MCS was found.
+
+Scaffolds were organised with respect to the number of rings. Frequently apeared scaffolds were also selected for visualization. As scaffolds are generated on the basis of ring systems, a better hierarchy was generated comparing to MCS based method.
+
 \subsection*{Upgrading ChEBI from OBO to OWL}
 
 -- OWL API
@@ -883,7 +892,7 @@ The full list of textual class definitions, together with their class IDs and na
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Acknowledgements}
   \ifthenelse{\boolean{publ}}{\small}{}
-  Text for this section \ldots
+  The authors wish to thank Peter Ertl for generating the scaffolds illustrated in Figure X, and ChemAxon for providing the software used to generate the hierarchy by MCS in Figure Y. 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  The Bibliography                       %%
